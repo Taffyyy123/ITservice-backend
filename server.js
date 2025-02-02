@@ -17,11 +17,7 @@ app.use("/admin", adminRouter);
 app.use("/post", postRouter);
 
 const connectToDb = async () => {
-  const res = await mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    ssl: true,
-  });
+  const res = await mongoose.connect(process.env.MONGODB_URI);
   if (res) console.log("db connected");
 };
 connectToDb();
