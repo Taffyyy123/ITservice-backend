@@ -26,4 +26,43 @@ const getOneService = async (req, res) => {
     res.send(error);
   }
 };
-module.exports = { createService, getServices, getOneService };
+const deleteService = async (req, res) => {
+  try {
+    const serviceId = req.params;
+    const deletedService = await serviceModel.findByIdAndDelete(serviceId);
+    if (!deletedService) {
+      return res.send("Service not found");
+    }
+    res.send("Service deleted successfully");
+  } catch (error) {
+    console.log(error);
+  }
+};
+const updateService = async (req, res) => {
+  try {
+    const serviceId = req.params;
+    const { infoImg, subTitle, caption, price } = req.body;
+
+    const updatedService = await Post.findByIdAndUpdate(
+      serviceId,
+      { infoImg, subTitle, caption, price },
+      { new: true }
+    );
+
+    if (!updatedService) {
+      return res.status(404).send({ message: "Service not found" });
+    }
+
+    res.status(200).json(updatedService);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error updating service" });
+  }
+};
+module.exports = {
+  createService,
+  getServices,
+  getOneService,
+  deleteService,
+  updateService,
+};

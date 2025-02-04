@@ -9,12 +9,16 @@ const PORT = 8080;
 dotenv.config();
 
 const serviceRouter = require("./routes/serviceRoute");
-const adminRouter = require("./routes/adminRoute");
 const postRouter = require("./routes/postRoute");
+const userRouter = require("./routes/userRoute");
+const categoryRouter = require("./routes/categoryRoute");
+const contactRouter = require("./routes/contactRoute");
 
 app.use("/service", serviceRouter);
-app.use("/admin", adminRouter);
+app.use("/user", userRouter);
 app.use("/post", postRouter);
+app.use("/category", categoryRouter);
+app.use("/contact", contactRouter);
 
 const connectToDb = async () => {
   const res = await mongoose.connect(process.env.MONGODB_URI);
