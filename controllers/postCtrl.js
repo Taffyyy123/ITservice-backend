@@ -23,12 +23,12 @@ const getAllPosts = async (req, res) => {
 
 const getPostById = async (req, res) => {
   try {
-    const postId = req.params;
+    const { postId } = req.params;
     const post = await Post.findById(postId).populate();
     if (!post) {
       return res.status(404).send({ message: "Post not found" });
     }
-    res.status(200).json(post);
+    res.status(200).send(post);
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Error fetching post" });
