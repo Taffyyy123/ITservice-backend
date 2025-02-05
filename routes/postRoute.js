@@ -10,8 +10,8 @@ const {
 
 postRouter.post("/createPost", createPost);
 postRouter.get("/getPosts", getAllPosts);
-postRouter.get("/:id", getPostById);
-postRouter.put("/:id", updatePost);
-postRouter.delete("/:id", deletePost);
+postRouter.get("/:postId", getPostById);
+postRouter.put("/:postId", updatePost);
+postRouter.delete("/:postId", deletePost);
 
 module.exports = postRouter;
