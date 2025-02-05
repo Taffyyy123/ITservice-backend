@@ -13,7 +13,7 @@ const createPost = async (req, res) => {
 
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.find().populate("authorId", "username email");
+    const posts = await Post.find().populate();
     res.status(200).send(posts);
   } catch (error) {
     console.log(error);
@@ -24,10 +24,7 @@ const getAllPosts = async (req, res) => {
 const getPostById = async (req, res) => {
   try {
     const postId = req.params;
-    const post = await Post.findById(postId).populate(
-      "authorId",
-      "username email"
-    );
+    const post = await Post.findById(postId).populate();
     if (!post) {
       return res.status(404).send({ message: "Post not found" });
     }
@@ -41,11 +38,11 @@ const getPostById = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const postId = req.params;
-    const { title, subtitle, content, imageUrl } = req.body;
+    const { title, content, imageUrl } = req.body;
 
     const updatedPost = await Post.findByIdAndUpdate(
       postId,
-      { title, subtitle, content, imageUrl },
+      { title, content, imageUrl },
       { new: true }
     );
 
