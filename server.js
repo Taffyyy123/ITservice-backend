@@ -10,12 +10,12 @@ dotenv.config();
 
 const serviceRouter = require("./routes/serviceRoute");
 const postRouter = require("./routes/postRoute");
-const userRouter = require("./routes/userRoute");
 const categoryRouter = require("./routes/categoryRoute");
 const contactRouter = require("./routes/contactRoute");
+const adminRouter = require("./routes/adminRoute");
 
 app.use("/service", serviceRouter);
-app.use("/user", userRouter);
+app.use("/admin", adminRouter);
 app.use("/post", postRouter);
 app.use("/category", categoryRouter);
 app.use("/contact", contactRouter);
